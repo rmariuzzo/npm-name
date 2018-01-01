@@ -10,6 +10,14 @@ test('returns false when package name is taken', async t => {
 	t.false(await m('chalk'));
 });
 
+test('returns true when scoped package name is available', async t => {
+	t.true(await m('@sindresorhus/' + uniqueString()));
+})
+
+test('returns false when scoped package name is taken', async t => {
+	t.false(await m('@sindresorhus/is'));
+})
+
 test('returns a map of multiple package names', async t => {
 	const name1 = 'chalk';
 	const name2 = uniqueString();

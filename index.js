@@ -4,6 +4,9 @@ const registryUrl = require('registry-url')();
 const zip = require('lodash.zip');
 
 function request(name) {
+	if (name.indexOf('@') === 0) {
+		name = '@' + encodeURIComponent(name.substr(1))
+	}
 	return got.head(registryUrl + name.toLowerCase(), {timeout: 10000})
 		.then(() => false)
 		.catch(err => {
